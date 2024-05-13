@@ -27,10 +27,10 @@ app.post('/webhook', (req, res) => {
 
   // hash the message string with your Webhook Secret Token and prepend the version semantic
   const signature = `v0=${hashForVerify}`
-
+  console.log(req.headers['x-zm-signature'], signature)
   // you validating the request came from Zoom https://marketplace.zoom.us/docs/api-reference/webhook-reference#notification-structure
   if (req.headers['x-zm-signature'] === signature) {
-    console.log(req.headers['x-zm-signature'], signature)
+  
 
     // Zoom validating you control the webhook endpoint https://marketplace.zoom.us/docs/api-reference/webhook-reference#validate-webhook-endpoint
     if(req.body.event === 'endpoint.url_validation') {
